@@ -1,6 +1,6 @@
 package com.example.hexagonal_rve.domain.post.model;
 
-import com.example.hexagonal_rve.adapter.post.out.post.db.PostEntity;
+import com.example.hexagonal_rve.adapter.post.out.db.PostEntity;
 import com.example.hexagonal_rve.application.post.port.in.command.UpdatePostCommand;
 import lombok.Builder;
 import lombok.Getter;
