@@ -1,4 +1,4 @@
-package com.example.hexagonal_rve.adapter.post.out.post.db;
+package com.example.hexagonal_rve.adapter.post.out.db;
 
 import jakarta.persistence.*;
 
