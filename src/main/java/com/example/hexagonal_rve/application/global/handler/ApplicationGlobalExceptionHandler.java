@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
-  @ExceptionHandler(RveException.class)
-  public ResponseEntity<String> handleRveException(RveException e) {
+public class ApplicationGlobalExceptionHandler {
+  @ExceptionHandler(RveApplicationException.class)
+  public ResponseEntity<String> handleRveException(RveApplicationException e) {
     return ResponseEntity.status(e.getErrorCode().getHttpStatus()).body(e.getMessage());
   }
 }
