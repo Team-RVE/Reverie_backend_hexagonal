@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/auths")
+@RequestMapping("/auth")
 public class AuthController {
   private final SignUpUseCase signUpUseCase;
   private final SetPasswordUseCase setPasswordUseCase;
 
-  @PostMapping("email/send")
+  @PostMapping("/email/send")
   @ResponseStatus(HttpStatus.OK)
   public void sendCode(@RequestBody SendCodeRequest request) {
     signUpUseCase.sendCode(request.getEmail());
@@ -33,7 +33,7 @@ public class AuthController {
         .build());
   }
 
-  @PostMapping("/password")
+  @PostMapping("/password/set")
   @ResponseStatus(HttpStatus.CREATED)
   public void setPassword(@RequestBody SetPasswordRequest request) {
     setPasswordUseCase.setPassword(SetPasswordCommand.builder()
