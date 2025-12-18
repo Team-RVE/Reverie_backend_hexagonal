@@ -36,24 +36,24 @@ public class JwtTokenGenerator implements JwtGeneratorPort {
   }
 
   @Override
-  public String generateAccessToken(String accountId) {
-    return generateToken(accountId,ACCESS_TOKEN, jwtProperties.getAccessTokenExpiresIn());
+  public String generateAccessToken(String email) {
+    return generateToken(email,ACCESS_TOKEN, jwtProperties.getAccessTokenExpiresIn());
   }
 
   @Override
-  public String generateRefreshToken(String accountId) {
-    String refreshToken = generateToken(accountId,REFRESH_TOKEN, jwtProperties.getRefreshTokenExpiresIn());
-    String key = REFRESH_TOKEN + accountId;
+  public String generateRefreshToken(String email) {
+    String refreshToken = generateToken(email,REFRESH_TOKEN, jwtProperties.getRefreshTokenExpiresIn());
+    String key = REFRESH_TOKEN + email;
     redisTemplate.opsForValue().set(key,refreshToken,jwtProperties.getRefreshTokenExpiresIn(), TimeUnit.MILLISECONDS);
     return refreshToken;
   }
 
-  private String generateToken(String userId, String type,Long time){
+  private String generateToken(String email, String type,Long time){
     Date now = new Date();
     return Jwts.builder()
         .signWith(secretKey,SignatureAlgorithm.HS256)
         .claim("type",type)
-        .setSubject(userId)
+        .setSubject(email)
         .setIssuedAt(now)
         .setExpiration(new Date(now.getTime()+time))
         .compact();

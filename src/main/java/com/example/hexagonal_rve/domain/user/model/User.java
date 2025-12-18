@@ -9,12 +9,12 @@ import lombok.Getter;
 @Getter
 public class User {
   private int id;
-  private String accountId;
+  private String email;
   private String password;
 
   public static User restore(UserEntity userEntity){
     return User.builder()
-        .accountId(userEntity.getAccountId())
+        .email(userEntity.getEmail())
         .password(userEntity.getPassword())
         .build();
   }

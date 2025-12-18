@@ -11,7 +11,10 @@ public enum ErrorCode {
   NOT_FOUND_POST(HttpStatus.NOT_FOUND,"can not find post"),
   JWT_EXPIRED(HttpStatus.UNAUTHORIZED,"token is expired"),
   JWT_INVALID(HttpStatus.UNAUTHORIZED,"token is invalid"),
-  JWT_NOT_FOUND(HttpStatus.UNAUTHORIZED,"token not found");
+  JWT_NOT_FOUND(HttpStatus.UNAUTHORIZED,"token not found"),
+  ACCOUNT_ALREADY_EXISTS(HttpStatus.CONFLICT,"account already exists"),
+  NOT_CORRECT_CODE(HttpStatus.UNAUTHORIZED,"not correct code"),
+  NOT_VERIFIED_CODE(HttpStatus.UNAUTHORIZED,"not verified code");
 
   private final HttpStatus httpStatus;
   private final String message;
