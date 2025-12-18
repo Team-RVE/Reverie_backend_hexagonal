@@ -4,6 +4,6 @@ import com.example.hexagonal_rve.application.auth.port.in.command.VerifyCodeComm
 
 public interface SignUpUseCase {
   void sendCode(String email);
-  boolean verifyCode(VerifyCodeCommand command);
+  void verifyCode(VerifyCodeCommand command);
 
 }

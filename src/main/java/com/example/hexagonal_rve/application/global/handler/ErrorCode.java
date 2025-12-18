@@ -14,7 +14,8 @@ public enum ErrorCode {
   JWT_NOT_FOUND(HttpStatus.UNAUTHORIZED,"token not found"),
   ACCOUNT_ALREADY_EXISTS(HttpStatus.CONFLICT,"account already exists"),
   NOT_CORRECT_CODE(HttpStatus.UNAUTHORIZED,"not correct code"),
-  NOT_VERIFIED_CODE(HttpStatus.UNAUTHORIZED,"not verified code");
+  NOT_VERIFIED_CODE(HttpStatus.UNAUTHORIZED,"not verified code"),
+  NOT_FOUND_EMAIL_CODE(HttpStatus.NOT_FOUND,"email code not found");
 
   private final HttpStatus httpStatus;
   private final String message;

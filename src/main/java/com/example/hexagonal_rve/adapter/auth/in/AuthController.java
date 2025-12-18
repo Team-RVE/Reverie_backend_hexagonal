@@ -8,10 +8,8 @@ import com.example.hexagonal_rve.application.auth.port.in.SignUpUseCase;
 import com.example.hexagonal_rve.application.auth.port.in.command.SetPasswordCommand;
 import com.example.hexagonal_rve.application.auth.port.in.command.VerifyCodeCommand;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,19 +19,22 @@ public class AuthController {
   private final SetPasswordUseCase setPasswordUseCase;
 
   @PostMapping("email/send")
+  @ResponseStatus(HttpStatus.OK)
   public void sendCode(@RequestBody SendCodeRequest request) {
     signUpUseCase.sendCode(request.getEmail());
   }
 
   @PostMapping("/email/verify")
-  public boolean verifyCode(@RequestBody VerifyCodeRequest request) {
-    return signUpUseCase.verifyCode(VerifyCodeCommand.builder()
+  @ResponseStatus(HttpStatus.OK)
+  public void verifyCode(@RequestBody VerifyCodeRequest request) {
+    signUpUseCase.verifyCode(VerifyCodeCommand.builder()
         .code(request.getCode())
         .email(request.getEmail())
         .build());
   }
 
   @PostMapping("/password")
+  @ResponseStatus(HttpStatus.CREATED)
   public void setPassword(@RequestBody SetPasswordRequest request) {
     setPasswordUseCase.setPassword(SetPasswordCommand.builder()
         .email(request.getEmail())

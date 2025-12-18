@@ -2,6 +2,7 @@ package com.example.hexagonal_rve.application.auth.service;
 
 import com.example.hexagonal_rve.application.auth.exception.AccountIdAlreadyExistsException;
 import com.example.hexagonal_rve.application.auth.exception.NotCorrectCodeException;
+import com.example.hexagonal_rve.application.auth.exception.NotFoundEmailCodeException;
 import com.example.hexagonal_rve.application.auth.port.in.SignUpUseCase;
 import com.example.hexagonal_rve.application.auth.port.in.command.VerifyCodeCommand;
 import com.example.hexagonal_rve.application.user.port.out.UserRepository;
@@ -36,18 +37,15 @@ public class SignUpService implements SignUpUseCase{
   }
 
   @Override
-  public boolean verifyCode(VerifyCodeCommand command) {
+  public void verifyCode(VerifyCodeCommand command) {
     String saveCode = redisTemplate.opsForValue().get(command.getEmail());
-    System.out.println(saveCode);
     if(saveCode == null){
-      System.out.println("null save code");
-      return false;
+      throw new NotFoundEmailCodeException();
     }
     else if(saveCode.equals(command.getCode())){
       redisTemplate.opsForValue()
             .set("verified:"+command.getEmail(), "true",
               10, TimeUnit.MINUTES);
-      return true;
     }
     throw new NotCorrectCodeException();
   }
