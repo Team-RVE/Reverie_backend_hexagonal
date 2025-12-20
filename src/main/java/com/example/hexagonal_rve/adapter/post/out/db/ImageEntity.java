@@ -1,14 +1,17 @@
 package com.example.hexagonal_rve.adapter.post.out.db;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Getter;
 
 @Entity
-@Table(name = "Image")
+@Getter
 public class ImageEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
-
-  private String url;
+  private int id;
+  private String imageUrl;
 }

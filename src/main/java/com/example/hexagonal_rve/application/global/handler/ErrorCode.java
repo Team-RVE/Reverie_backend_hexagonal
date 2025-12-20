@@ -15,7 +15,10 @@ public enum ErrorCode {
   ACCOUNT_ALREADY_EXISTS(HttpStatus.CONFLICT,"account already exists"),
   NOT_CORRECT_CODE(HttpStatus.UNAUTHORIZED,"not correct code"),
   NOT_VERIFIED_CODE(HttpStatus.UNAUTHORIZED,"not verified code"),
-  NOT_FOUND_EMAIL_CODE(HttpStatus.NOT_FOUND,"email code not found");
+  NOT_FOUND_EMAIL_CODE(HttpStatus.NOT_FOUND,"email code not found"),
+  IMAGE_IO_EXCEPTION(HttpStatus.INTERNAL_SERVER_ERROR,"image io exception"),
+  USER_NOT_FOUND(HttpStatus.NOT_FOUND,"user not found"),
+  NOT_CORRECT_PASSWORD(HttpStatus.UNAUTHORIZED,"not correct password");
 
   private final HttpStatus httpStatus;
   private final String message;

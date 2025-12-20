@@ -4,12 +4,12 @@ import com.example.hexagonal_rve.application.post.port.out.PostRepository;
 import com.example.hexagonal_rve.domain.post.model.Post;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 
-@Repository
+@Component
 @RequiredArgsConstructor
 @Transactional
 public class PostRepositoryAdapter implements PostRepository {

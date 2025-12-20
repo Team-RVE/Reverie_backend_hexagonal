@@ -7,7 +7,6 @@ import com.example.hexagonal_rve.domain.post.model.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -17,13 +16,7 @@ public class CreatePostService implements CreatePostUseCase {
 
   @Override
   public void createPost(CreatePostCommand command) {
-    Post post = Post.builder()
-        .title(command.getTitle())
-        .content(command.getContent())
-        .category(command.getCategory())
-        .createdAt(LocalDateTime.now())
-        .liked(false)
-        .build();
+    Post post = Post.createNew(command.getTitle(),command.getContent(),command.getCategory(),command.getImageUrls());
     postRepository.save(post);
   }
 

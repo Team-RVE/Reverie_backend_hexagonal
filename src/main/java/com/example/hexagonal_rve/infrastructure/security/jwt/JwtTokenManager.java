@@ -18,9 +18,9 @@ public class JwtTokenManager implements JwtManagerPort {
   private final UserDetailsService userDetailsService;
 
   @Override
-  public String reissueAccessToken(String accountId,String refreshToken) {
+  public String reissueAccessToken(String email,String refreshToken) {
     jwtParser.validateRefreshToken(refreshToken);
-    return jwtGenerator.generateAccessToken(accountId);
+    return jwtGenerator.generateAccessToken(email);
   }
 
   @Override

@@ -4,7 +4,6 @@ import com.example.hexagonal_rve.application.post.exception.NotFoundPostExceptio
 import com.example.hexagonal_rve.application.post.port.in.ReadPostUseCase;
 import com.example.hexagonal_rve.application.post.port.out.PostRepository;
 import com.example.hexagonal_rve.domain.post.model.Post;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,15 +1,15 @@
 package com.example.hexagonal_rve.adapter.post.out.db;
 
 import com.example.hexagonal_rve.domain.post.model.Category;
-import com.example.hexagonal_rve.domain.post.model.Post;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -26,6 +26,10 @@ public class PostEntity {
   @Enumerated(EnumType.STRING)
   private Category category;
   private LocalDateTime createdAt;
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "post_id")
+  private List<ImageEntity> images=new ArrayList<>();
   private boolean liked;
+  private String imageUrl;
 
 }

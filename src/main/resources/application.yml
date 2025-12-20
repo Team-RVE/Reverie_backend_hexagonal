@@ -10,14 +10,14 @@ spring:
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_NAME:rve}?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=UTF-8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Seoul
     username: ${MYSQL_USERNAME:root}
-    password: ${MYSQL_PASSWORD:lhs0324*}
+    password: ${MYSQL_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ihansaem60@gmail.com
-    password: fkch gzfh qdcs uhuq
+    username: ${EMAIL_ADDRESS}
+    password: ${EMAIL_APP_PASSWORD}
     properties:
       mail:
         smtp:
@@ -26,10 +26,26 @@ spring:
             enable: true
 
 jwt:
-  secret-key: ${JWT_SECRET_KEY:sdkfkjshdfjkahsdkjfhkjasdhfjkahfd}
+  secret-key: ${JWT_SECRET_KEY}
   access-exp: ${JWT_ACCESS_EXP:604800000}
   refresh-exp: ${JWT_REFRESH_EXP:604800000}
 redis:
   host: ${REDIS_HOST:localhost}
   port: ${REDIS_PORT:6379}
-  password: ${REDIS_PASSWORD:lhs0324*}
+  password: ${REDIS_PASSWORD}
+cloud:
+  aws:
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
+    region:
+      static: ap-northeast-2
+    s3:
+      bucket : images
+
+minio:
+  url : http://${MINIO_HOST:localhost}:${MINIO_PORT:9000}
+  access-key : ${MINIO_ACCESS_KEY}
+  secret-key: ${MINIO_SECRET_KEY}
+  bucket : ${MINIO_BUCKET:images}
+  ip : ${MINIO_IP:127.0.0.1}

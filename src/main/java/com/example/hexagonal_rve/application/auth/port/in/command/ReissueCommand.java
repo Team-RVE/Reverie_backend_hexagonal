@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class SignInCommand {
+public class ReissueCommand {
   private String email;
-  private String password;
+  private String refreshToken;
 }
