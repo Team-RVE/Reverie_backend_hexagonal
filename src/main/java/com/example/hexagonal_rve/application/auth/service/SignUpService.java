@@ -42,15 +42,15 @@ public class SignUpService implements SignUpUseCase{
     if(saveCode == null){
       throw new NotFoundEmailCodeException();
     }
-    else if(saveCode.equals(command.getCode())){
+    if(saveCode.equals(command.getCode())){
       redisTemplate.opsForValue()
             .set("verified:"+command.getEmail(), "true",
               10, TimeUnit.MINUTES);
     }
-    throw new NotCorrectCodeException();
+    else{
+      throw new NotCorrectCodeException();
+    }
   }
-
-
 
   private String generateCode() {
     return String.valueOf((int) (Math.random() * 900_000) + 100_000);
