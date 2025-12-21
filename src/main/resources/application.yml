@@ -8,8 +8,8 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_NAME:rve}?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=UTF-8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Seoul
-    username: ${MYSQL_USERNAME:root}
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_NAME}?allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=UTF-8&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Seoul
+    username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
@@ -27,11 +27,11 @@ spring:
 
 jwt:
   secret-key: ${JWT_SECRET_KEY}
-  access-exp: ${JWT_ACCESS_EXP:604800000}
-  refresh-exp: ${JWT_REFRESH_EXP:604800000}
+  access-exp: ${JWT_ACCESS_EXP}
+  refresh-exp: ${JWT_REFRESH_EXP}
 redis:
-  host: ${REDIS_HOST:localhost}
-  port: ${REDIS_PORT:6379}
+  host: ${REDIS_HOST}
+  port: ${REDIS_PORT}
   password: ${REDIS_PASSWORD}
 cloud:
   aws:
@@ -44,8 +44,8 @@ cloud:
       bucket : images
 
 minio:
-  url : http://${MINIO_HOST:localhost}:${MINIO_PORT:9000}
+  url : http://${MINIO_HOST}:${MINIO_PORT}
   access-key : ${MINIO_ACCESS_KEY}
   secret-key: ${MINIO_SECRET_KEY}
-  bucket : ${MINIO_BUCKET:images}
-  ip : ${MINIO_IP:127.0.0.1}
+  bucket : ${MINIO_BUCKET}
+  ip : ${MINIO_IP}
