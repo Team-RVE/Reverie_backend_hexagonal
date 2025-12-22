@@ -13,11 +13,10 @@ public class UserRepositoryAdapter implements UserRepository {
 
 
   private final JpaUserRepository jpaUserRepository;
-  private final UserMapper userMapper;
 
   @Override
   public Optional<User> findByEmail(String email) {
-    return jpaUserRepository.findByEmail(email);
+    return jpaUserRepository.findByEmail(email).map(UserMapper::toDomain);
   }
 
   @Override
@@ -27,6 +26,6 @@ public class UserRepositoryAdapter implements UserRepository {
 
   @Override
   public void save(User user) {
-    jpaUserRepository.save(userMapper.toEntity(user));
+    jpaUserRepository.save(UserMapper.toEntity(user));
   }
 }

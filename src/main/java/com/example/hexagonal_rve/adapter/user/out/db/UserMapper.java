@@ -6,11 +6,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
 
-  public User toDomain(UserEntity entity){
+  public static User toDomain(UserEntity entity){
     return User.restore(entity);
   }
 
-  public UserEntity toEntity(User user){
+  public static UserEntity toEntity(User user){
     return UserEntity.builder()
         .email(user.getEmail())
         .password(user.getPassword())
