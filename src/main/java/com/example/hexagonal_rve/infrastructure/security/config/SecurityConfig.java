@@ -46,7 +46,8 @@ public class SecurityConfig {
 
         //경로별 권한설정
         .authorizeHttpRequests(authorize->authorize
-            .anyRequest().permitAll())
+            .requestMatchers("/auth/**").permitAll()
+            .anyRequest().authenticated())
         .build();
   }
 }
