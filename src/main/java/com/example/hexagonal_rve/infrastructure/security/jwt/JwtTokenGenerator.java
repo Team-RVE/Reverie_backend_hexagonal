@@ -37,14 +37,14 @@ public class JwtTokenGenerator implements JwtGeneratorPort {
 
   @Override
   public String generateAccessToken(String email) {
-    return generateToken(email,ACCESS_TOKEN, jwtProperties.getAccessTokenExpiresIn());
+    return generateToken(email,ACCESS_TOKEN, jwtProperties.getAccessTokenExp());
   }
 
   @Override
   public String generateRefreshToken(String email) {
-    String refreshToken = generateToken(email,REFRESH_TOKEN, jwtProperties.getRefreshTokenExpiresIn());
+    String refreshToken = generateToken(email,REFRESH_TOKEN, jwtProperties.getRefreshTokenExp());
     String key = REFRESH_TOKEN + email;
-    redisTemplate.opsForValue().set(key,refreshToken,jwtProperties.getRefreshTokenExpiresIn(), TimeUnit.MILLISECONDS);
+    redisTemplate.opsForValue().set(key,refreshToken,jwtProperties.getRefreshTokenExp(), TimeUnit.MILLISECONDS);
     return refreshToken;
   }
 

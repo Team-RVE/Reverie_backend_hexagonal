@@ -27,8 +27,8 @@ spring:
 
 jwt:
   secret-key: ${JWT_SECRET_KEY}
-  access-exp: ${JWT_ACCESS_EXP}
-  refresh-exp: ${JWT_REFRESH_EXP}
+  access-token-exp: ${JWT_ACCESS_EXP}
+  refresh-token-exp: ${JWT_REFRESH_EXP}
 redis:
   host: ${REDIS_HOST}
   port: ${REDIS_PORT}
