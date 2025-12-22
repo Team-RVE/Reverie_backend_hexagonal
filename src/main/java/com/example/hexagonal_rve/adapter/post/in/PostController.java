@@ -59,7 +59,7 @@ public class PostController {
   }
   @PostMapping("/image")
   @ResponseStatus(HttpStatus.OK)
-  public List<String> uploadImage(@RequestBody List<MultipartFile> files) {
+  public List<String> uploadImage(@RequestParam List<MultipartFile> files) {
     return imageUseCase.uploadImage(files);
   }
 }
