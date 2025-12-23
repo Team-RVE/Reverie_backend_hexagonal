@@ -8,6 +8,5 @@ public interface PostRepository {
   void save(Post post);
   void deleteById(Integer id);
   Optional<Post> findById(Integer id);
-  void update(Post post);
 
 }

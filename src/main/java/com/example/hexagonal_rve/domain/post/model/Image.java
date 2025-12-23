@@ -1,6 +1,6 @@
 package com.example.hexagonal_rve.domain.post.model;
 
-import com.example.hexagonal_rve.adapter.post.out.db.ImageEntity;
+import com.example.hexagonal_rve.adapter.post.out.db.image.ImageEntity;
 import lombok.Getter;
 
 import java.util.List;

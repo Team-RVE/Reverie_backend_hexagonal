@@ -1,5 +1,6 @@
 package com.example.hexagonal_rve.adapter.post.out.db;
 
+import com.example.hexagonal_rve.adapter.post.out.db.image.ImageEntity;
 import com.example.hexagonal_rve.domain.post.model.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

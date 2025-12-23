@@ -29,12 +29,6 @@ public class PostRepositoryAdapter implements PostRepository {
   }
 
   @Override
-  public void update(Post post) {
-
-  }
-
-
-  @Override
   public void save(Post post) {
     jpaPostRepository.save(postMapper.toEntity(post));
   }
