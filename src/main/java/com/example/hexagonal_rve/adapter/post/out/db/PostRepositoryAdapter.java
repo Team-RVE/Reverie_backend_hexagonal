@@ -14,7 +14,6 @@ import java.util.Optional;
 @Transactional
 public class PostRepositoryAdapter implements PostRepository {
   private final JpaPostRepository jpaPostRepository;
-  private final PostMapper postMapper;
 
 
   @Override
@@ -25,11 +24,11 @@ public class PostRepositoryAdapter implements PostRepository {
   @Override
   public Optional<Post> findById(Integer id) {
     return jpaPostRepository.findById(id)
-        .map(postMapper::toDomain);
+        .map(PostMapper::toDomain);
   }
 
   @Override
   public void save(Post post) {
-    jpaPostRepository.save(postMapper.toEntity(post));
+    jpaPostRepository.save(PostMapper.toEntity(post));
   }
 }

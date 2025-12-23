@@ -1,5 +1,6 @@
 package com.example.hexagonal_rve.infrastructure.config;
 
+import com.example.hexagonal_rve.domain.auth.vo.PendingUser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
@@ -44,5 +46,20 @@ public class RedisConfig {
     redisTemplate.setHashKeySerializer(new StringRedisSerializer());
 
     return redisTemplate;
+  }
+  @Bean
+  public RedisTemplate<String, PendingUser> pendingUserRedisTemplate(
+      RedisConnectionFactory factory
+  ) {
+    RedisTemplate<String, PendingUser> template = new RedisTemplate<>();
+    template.setConnectionFactory(factory);
+
+    Jackson2JsonRedisSerializer<PendingUser> serializer =
+        new Jackson2JsonRedisSerializer<>(PendingUser.class);
+
+    template.setKeySerializer(new StringRedisSerializer());
+    template.setValueSerializer(serializer);
+
+    return template;
   }
 }

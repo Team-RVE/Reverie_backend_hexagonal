@@ -2,14 +2,8 @@ package com.example.hexagonal_rve.adapter.auth.in;
 
 import com.example.hexagonal_rve.adapter.auth.in.dto.request.*;
 import com.example.hexagonal_rve.adapter.auth.in.dto.response.TokenResponse;
-import com.example.hexagonal_rve.application.auth.port.in.ReissueUseCase;
-import com.example.hexagonal_rve.application.auth.port.in.SetPasswordUseCase;
-import com.example.hexagonal_rve.application.auth.port.in.SignInUseCase;
-import com.example.hexagonal_rve.application.auth.port.in.SignUpUseCase;
-import com.example.hexagonal_rve.application.auth.port.in.command.ReissueCommand;
-import com.example.hexagonal_rve.application.auth.port.in.command.SetPasswordCommand;
-import com.example.hexagonal_rve.application.auth.port.in.command.SignInCommand;
-import com.example.hexagonal_rve.application.auth.port.in.command.VerifyCodeCommand;
+import com.example.hexagonal_rve.application.auth.port.in.*;
+import com.example.hexagonal_rve.application.auth.port.in.command.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,30 +13,30 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class AuthController {
 
-  private final SignUpUseCase signUpUseCase;
-  private final SetPasswordUseCase setPasswordUseCase;
+  private final EmailVerificationUseCase emailVerificationUseCase;
   private final SignInUseCase signInUseCase;
   private final ReissueUseCase reissueUseCase;
+  private final SignUpUseCase signUpUseCase;
 
   @PostMapping("/email/send")
   @ResponseStatus(HttpStatus.OK)
   public void sendCode(@RequestBody SendCodeRequest request) {
-    signUpUseCase.sendCode(request.getEmail());
+    emailVerificationUseCase.sendCode(request.getEmail());
   }
 
   @PostMapping("/email/verify")
   @ResponseStatus(HttpStatus.OK)
   public void verifyCode(@RequestBody VerifyCodeRequest request) {
-    signUpUseCase.verifyCode(VerifyCodeCommand.builder()
+    emailVerificationUseCase.verifyCode(VerifyCodeCommand.builder()
         .code(request.getCode())
         .email(request.getEmail())
         .build());
   }
 
-  @PostMapping("/password/set")
+  @PostMapping("/sign-up")
   @ResponseStatus(HttpStatus.CREATED)
-  public void setPassword(@RequestBody SetPasswordRequest request) {
-    setPasswordUseCase.setPassword(SetPasswordCommand.builder()
+  public void signUp(@RequestBody SignUpRequest request) {
+    signUpUseCase.signUp(SignUpCommand.builder()
         .email(request.getEmail())
         .password(request.getPassword())
         .build());

@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 @Builder
 public class ReissueCommand {
-  private String email;
-  private String refreshToken;
+  private final String email;
+  private final String refreshToken;
 }

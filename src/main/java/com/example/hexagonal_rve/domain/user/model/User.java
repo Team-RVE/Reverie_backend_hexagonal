@@ -1,21 +1,24 @@
 package com.example.hexagonal_rve.domain.user.model;
 
-import com.example.hexagonal_rve.adapter.post.out.db.PostEntity;
-import com.example.hexagonal_rve.adapter.user.out.db.UserEntity;
-import lombok.Builder;
 import lombok.Getter;
 
-@Builder
 @Getter
 public class User {
-  private int id;
-  private String email;
-  private String password;
+  private final Integer id;
+  private final String email;
+  private final String password;
 
-  public static User restore(UserEntity userEntity){
-    return User.builder()
-        .email(userEntity.getEmail())
-        .password(userEntity.getPassword())
-        .build();
+  public static User create(String email, String password){
+    return new User(null,email,password);
+  }
+
+  public static User restore(Integer id, String email, String password) {
+    return new User(id,email,password);
+  }
+  public User(Integer id, String email, String password) {
+    this.id = id;
+    this.email = email;
+    this.password = password;
+
   }
 }

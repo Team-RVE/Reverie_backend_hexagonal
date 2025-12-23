@@ -1,9 +1,7 @@
 package com.example.hexagonal_rve.domain.post.model;
 
-import com.example.hexagonal_rve.adapter.post.out.db.image.ImageEntity;
 import lombok.Getter;
-
-import java.util.List;
+import org.springframework.security.web.webauthn.api.PublicKeyCose;
 
 @Getter
 public class Image {
@@ -15,18 +13,7 @@ public class Image {
     this.url = url;
   }
 
-  public static Image restore(ImageEntity entity) {
-    return new Image(
-        entity.getId(),
-        entity.getImageUrl()
-    );
+  public static Image restore(Integer id, String url) {
+    return new Image(id, url);
   }
-
-  public static List<Image> restoreAll(List<ImageEntity> entities) {
-    return entities.stream()
-        .map(Image::restore)
-        .toList();
-  }
-
-
 }

@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 @Builder
 public class VerifyCodeCommand {
-  private String email;
-  private String code;
+  private final String email;
+  private final String code;
 }

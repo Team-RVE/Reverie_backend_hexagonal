@@ -1,9 +1,8 @@
 package com.example.hexagonal_rve.application.auth.port.in;
 
-import com.example.hexagonal_rve.application.auth.port.in.command.VerifyCodeCommand;
+
+import com.example.hexagonal_rve.application.auth.port.in.command.SignUpCommand;
 
 public interface SignUpUseCase {
-  void sendCode(String email);
-  void verifyCode(VerifyCodeCommand command);
-
+  void signUp(SignUpCommand command);
 }

@@ -1,58 +1,42 @@
 package com.example.hexagonal_rve.application.auth.service;
 
-import com.example.hexagonal_rve.application.auth.exception.AccountIdAlreadyExistsException;
-import com.example.hexagonal_rve.application.auth.exception.NotCorrectCodeException;
-import com.example.hexagonal_rve.application.auth.exception.NotFoundEmailCodeException;
+import com.example.hexagonal_rve.application.auth.exception.InvalidAuthenticationStatusException;
 import com.example.hexagonal_rve.application.auth.port.in.SignUpUseCase;
-import com.example.hexagonal_rve.application.auth.port.in.command.VerifyCodeCommand;
+import com.example.hexagonal_rve.application.auth.port.in.command.SignUpCommand;
+import com.example.hexagonal_rve.application.auth.port.out.PendingUserRepository;
 import com.example.hexagonal_rve.application.user.port.out.UserRepository;
+import com.example.hexagonal_rve.domain.auth.vo.PendingStatus;
+import com.example.hexagonal_rve.domain.auth.vo.PendingUser;
+import com.example.hexagonal_rve.domain.user.model.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
-public class SignUpService implements SignUpUseCase{
+public class SignUpService implements SignUpUseCase {
+
   private final UserRepository userRepository;
-  private final JavaMailSender mailSender;
-  private final RedisTemplate<String, String> redisTemplate;
+  private final PendingUserRepository pendingUserRepository;
+  private final PasswordEncoder passwordEncoder;
+
 
   @Override
-  public void sendCode(String email) {
-    String code = generateCode();
-    if(userRepository.existsByEmail(email)){
-      throw new AccountIdAlreadyExistsException();
+  public void signUp(SignUpCommand command) {
+
+
+    PendingUser pendingUser= pendingUserRepository.findByEmail(command.getEmail());
+
+    if(!pendingUser.isVerified(PendingStatus.EMAIL_VERIFIED)){
+      throw new InvalidAuthenticationStatusException();
     }
 
-    redisTemplate.opsForValue().set(email, code, 5, TimeUnit.MINUTES);
-    SimpleMailMessage message = new SimpleMailMessage();
-    message.setTo(email);
-    message.setSubject("이메일 인증 코드");
-    message.setText("인증 코드: " + code);
-    mailSender.send(message);
-  }
+    String encodedPassword = passwordEncoder.encode(command.getPassword());
 
-  @Override
-  public void verifyCode(VerifyCodeCommand command) {
-    String saveCode = redisTemplate.opsForValue().get(command.getEmail());
-    if(saveCode == null){
-      throw new NotFoundEmailCodeException();
-    }
-    if(saveCode.equals(command.getCode())){
-      redisTemplate.opsForValue()
-            .set("verified:"+command.getEmail(), "true",
-              10, TimeUnit.MINUTES);
-    }
-    else{
-      throw new NotCorrectCodeException();
-    }
-  }
+    User user = User.create(command.getEmail(),encodedPassword);
 
-  private String generateCode() {
-    return String.valueOf((int) (Math.random() * 900_000) + 100_000);
+    userRepository.save(user);
+
+    pendingUserRepository.deleteByEmail(command.getEmail());
   }
 }
