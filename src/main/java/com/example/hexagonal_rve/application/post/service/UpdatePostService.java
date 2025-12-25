@@ -4,12 +4,9 @@ import com.example.hexagonal_rve.application.post.exception.NotFoundPostExceptio
 import com.example.hexagonal_rve.application.post.port.in.UpdatePostUseCase;
 import com.example.hexagonal_rve.application.post.port.in.command.UpdatePostCommand;
 import com.example.hexagonal_rve.application.post.port.out.PostRepository;
-import com.example.hexagonal_rve.domain.post.model.Image;
 import com.example.hexagonal_rve.domain.post.model.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,10 +19,7 @@ public class UpdatePostService implements UpdatePostUseCase {
     Post post = postRepository.findById(command.getId())
         .orElseThrow(NotFoundPostException::new);
 
-    List<String> imageUrls = command.getImages().stream()
-        .map(Image::getUrl)
-        .toList();
-    post.update(command.getTitle(), command.getContent(),command.getCategory(),imageUrls);
+    post.update(command.getTitle(), command.getContent(),command.getCategory(),command.getImages());
 
     postRepository.save(post);
   }

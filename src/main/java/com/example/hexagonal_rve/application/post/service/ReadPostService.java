@@ -4,14 +4,16 @@ import com.example.hexagonal_rve.application.post.exception.NotFoundPostExceptio
 import com.example.hexagonal_rve.application.post.port.in.ReadPostUseCase;
 import com.example.hexagonal_rve.application.post.port.out.PostRepository;
 import com.example.hexagonal_rve.domain.post.model.Post;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ReadPostService implements ReadPostUseCase {
 
-  private PostRepository postRepository;
+  private final PostRepository postRepository;
   @Override
   public Post readPostById(Integer id) {
     return postRepository.findById(id)

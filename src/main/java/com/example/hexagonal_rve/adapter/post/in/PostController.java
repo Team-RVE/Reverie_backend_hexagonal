@@ -8,6 +8,7 @@ import com.example.hexagonal_rve.application.post.port.in.command.UpdatePostComm
 import com.example.hexagonal_rve.domain.post.model.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,14 +25,17 @@ public class PostController {
   private final ReadPostUseCase readPostUseCase;
   private final ImageUseCase imageUseCase;
 
-  @PostMapping
+  @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
   @ResponseStatus(HttpStatus.CREATED)
-  public void createPost(@RequestBody CreatePostRequest dto) {
+  public void createPost(@RequestPart("images") List<MultipartFile> images, @RequestPart("post") CreatePostRequest dto) {
+
+    List<String> imageUrls = imageUseCase.uploadImage(images);
+
     createPostUseCase.createPost(CreatePostCommand.builder()
         .title(dto.getTitle())
         .content(dto.getContent())
         .category(dto.getCategory())
-        .imageUrls(dto.getImageUrls())
+        .imageUrls(imageUrls)
         .build());
   }
 
