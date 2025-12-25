@@ -45,6 +45,12 @@ public class PostController {
     return readPostUseCase.readPostById(id);
   }
 
+  @GetMapping()
+  @ResponseStatus(HttpStatus.OK)
+  public List<Post> getPostsAll() {
+    return readPostUseCase.readAllPosts();
+  }
+
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
   public void deletePost(@PathVariable Integer id) {

@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -30,5 +31,14 @@ public class PostRepositoryAdapter implements PostRepository {
   @Override
   public void save(Post post) {
     jpaPostRepository.save(PostMapper.toEntity(post));
+  }
+
+  @Override
+  public List<Post> findAll() {
+    List<PostEntity> postEntities = jpaPostRepository.findAll();
+
+    return postEntities.stream()
+        .map(PostMapper::toDomain)
+        .toList();
   }
 }

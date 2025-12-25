@@ -22,6 +22,6 @@ public class ReadPostService implements ReadPostUseCase {
 
   @Override
   public List<Post> readAllPosts() {
-    return List.of();
+    return postRepository.findAll();
   }
 }
