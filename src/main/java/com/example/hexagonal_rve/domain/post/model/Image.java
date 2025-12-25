@@ -1,7 +1,6 @@
 package com.example.hexagonal_rve.domain.post.model;
 
 import lombok.Getter;
-import org.springframework.security.web.webauthn.api.PublicKeyCose;
 
 @Getter
 public class Image {

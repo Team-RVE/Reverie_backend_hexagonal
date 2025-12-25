@@ -29,7 +29,7 @@ public class PostEntity {
   private LocalDateTime createdAt;
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "post_id")
-  private List<ImageEntity> images=new ArrayList<>();
+  private List<ImageEntity> images;
   private boolean liked;
   private String imageUrl;
 

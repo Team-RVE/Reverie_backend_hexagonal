@@ -13,5 +13,6 @@ public class ImageRepositoryAdapter implements ImageRepository {
 
   @Override
   public void save(Image image) {
+    jpaImageRepository.save(ImageMapper.toEntity(image));
   }
 }

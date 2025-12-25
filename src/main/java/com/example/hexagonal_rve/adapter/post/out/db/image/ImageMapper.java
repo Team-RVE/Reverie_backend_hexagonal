@@ -10,7 +10,6 @@ public class ImageMapper {
 
   public static ImageEntity toEntity(Image image){
     return ImageEntity.builder()
-        .id(image.getId())
         .imageUrl(image.getUrl())
         .build();
   }

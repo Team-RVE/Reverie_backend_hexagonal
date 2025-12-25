@@ -8,7 +8,6 @@ import com.example.hexagonal_rve.application.auth.port.out.PendingUserRepository
 import com.example.hexagonal_rve.application.auth.spi.MailSenderPort;
 import com.example.hexagonal_rve.domain.auth.vo.PendingUser;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
