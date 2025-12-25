@@ -8,6 +8,7 @@ import java.util.List;
 
 @Getter
 public class Post {
+  private final Integer id;
   private String title;
   private String content;
   private Category category;
@@ -16,12 +17,14 @@ public class Post {
   private boolean liked;
 
   private Post(
+      Integer id,
       String title,
       String content,
       Category category,
       LocalDateTime createdAt,
       List<Image> images
   ) {
+    this.id = id;
     this.title = title;
     this.content = content;
     this.category = category;
@@ -30,25 +33,26 @@ public class Post {
   }
 
   public static Post createNew(String title, String content, Category category) {
-    return new Post(title, content, category, LocalDateTime.now(),new ArrayList<>());
+    return new Post(null,title, content, category, LocalDateTime.now(),new ArrayList<>());
   }
 
 
   public static Post restore(
+      Integer id,
       String title,
       String content,
       Category category,
       LocalDateTime createdAt,
       List<Image> images) {
-    return new Post (title, content, category, createdAt, images);
+    List<Image> imagesList = new ArrayList<>(images);
+    return new Post (id,title, content, category, createdAt, imagesList);
 
   }
 
-  public void update(String title, String content, Category category, List<Image> images) {
+  public void update(String title, String content, Category category) {
     this.title = title;
     this.content = content;
     this.category = category;
-    this.images = images;
   }
 
   public void addImage(Image image) {

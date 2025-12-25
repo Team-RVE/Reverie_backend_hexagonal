@@ -11,6 +11,7 @@ public class PostMapper{
 
   public static Post toDomain(PostEntity entity){
     return Post.restore(
+        entity.getId(),
         entity.getTitle(),
         entity.getContent(),
         entity.getCategory(),
@@ -23,6 +24,7 @@ public class PostMapper{
 
   public static PostEntity toEntity(Post post){
     PostEntity entity=PostEntity.builder()
+        .id(post.getId())
         .title(post.getTitle())
         .content(post.getContent())
         .category(post.getCategory())

@@ -51,14 +51,17 @@ public class PostController {
     deletePostUseCase.deletePostById(id);
   }
 
-  @PatchMapping
+  @PatchMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public void updatePost(@RequestBody UpdatePostRequest dto) {
-    updatePostUseCase.updatePost(UpdatePostCommand.builder()
-        .id(dto.getId())
+  public void updatePost(@PathVariable Integer id,@RequestPart("images")List<MultipartFile> images,@RequestPart("post") UpdatePostRequest dto) {
+
+    List<String> imageUrls = imageUseCase.uploadImage(images);
+
+    updatePostUseCase.updatePost(id,UpdatePostCommand.builder()
         .title(dto.getTitle())
         .content(dto.getContent())
         .category(dto.getCategory())
+        .imageUrls(imageUrls)
         .build());
   }
   @PostMapping("/image")
