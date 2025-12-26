@@ -10,5 +10,6 @@ public interface PostRepository {
   void deleteById(Integer id);
   Optional<Post> findById(Integer id);
   List<Post> findAll();
+  List<Post> findByLikedPost();
 
 }

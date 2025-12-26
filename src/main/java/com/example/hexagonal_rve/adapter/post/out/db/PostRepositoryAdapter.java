@@ -41,4 +41,11 @@ public class PostRepositoryAdapter implements PostRepository {
         .map(PostMapper::toDomain)
         .toList();
   }
+
+  @Override
+  public List<Post> findByLikedPost() {
+    List<PostEntity> liked = jpaPostRepository.findByLiked(true);
+    return liked.stream().map(PostMapper::toDomain)
+        .toList();
+  }
 }

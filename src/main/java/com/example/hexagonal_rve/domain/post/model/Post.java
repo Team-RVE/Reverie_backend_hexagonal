@@ -22,6 +22,7 @@ public class Post {
       String content,
       Category category,
       LocalDateTime createdAt,
+      boolean liked,
       List<Image> images
   ) {
     this.id = id;
@@ -29,11 +30,12 @@ public class Post {
     this.content = content;
     this.category = category;
     this.createdAt = createdAt;
+    this.liked = liked;
     this.images = (images != null) ? images : new ArrayList<>();
   }
 
   public static Post createNew(String title, String content, Category category) {
-    return new Post(null,title, content, category, LocalDateTime.now(),new ArrayList<>());
+    return new Post(null,title, content, category, LocalDateTime.now(),false,new ArrayList<>());
   }
 
 
@@ -43,9 +45,10 @@ public class Post {
       String content,
       Category category,
       LocalDateTime createdAt,
+      boolean liked,
       List<Image> images) {
     List<Image> imagesList = new ArrayList<>(images);
-    return new Post (id,title, content, category, createdAt, imagesList);
+    return new Post (id,title, content, category, createdAt,liked,imagesList);
 
   }
 
@@ -57,6 +60,13 @@ public class Post {
 
   public void addImage(Image image) {
     images.add(image);
+  }
+
+  public void changeLikeStatus() {
+    if(liked)
+      liked = false;
+    else
+      liked = true;
   }
 
 }

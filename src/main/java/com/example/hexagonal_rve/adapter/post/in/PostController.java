@@ -24,6 +24,7 @@ public class PostController {
   private final DeletePostUseCase deletePostUseCase;
   private final ReadPostUseCase readPostUseCase;
   private final ImageUseCase imageUseCase;
+  private final LikePostUseCase likePostUseCase;
 
   @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
   @ResponseStatus(HttpStatus.CREATED)
@@ -74,5 +75,17 @@ public class PostController {
   @ResponseStatus(HttpStatus.OK)
   public List<String> uploadImage(@RequestParam List<MultipartFile> files) {
     return imageUseCase.uploadImage(files);
+  }
+
+  @PostMapping("/{id}")
+  @ResponseStatus(HttpStatus.OK)
+  public void changeLikeStatus(@PathVariable Integer id) {
+    likePostUseCase.changeLikeStatus(id);
+  }
+
+  @GetMapping("/like")
+  @ResponseStatus(HttpStatus.OK)
+  public List<Post> getLikePosts() {
+    return likePostUseCase.getLikedPosts();
   }
 }

@@ -16,6 +16,7 @@ public class PostMapper{
         entity.getContent(),
         entity.getCategory(),
         entity.getCreatedAt(),
+        entity.isLiked(),
         entity.getImages().stream()
             .map(ImageMapper::toDomain)
             .toList());
