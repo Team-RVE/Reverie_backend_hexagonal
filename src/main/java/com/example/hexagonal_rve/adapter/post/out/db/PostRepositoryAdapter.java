@@ -1,6 +1,7 @@
 package com.example.hexagonal_rve.adapter.post.out.db;
 
 import com.example.hexagonal_rve.application.post.port.out.PostRepository;
+import com.example.hexagonal_rve.domain.post.model.Category;
 import com.example.hexagonal_rve.domain.post.model.Post;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -47,5 +48,12 @@ public class PostRepositoryAdapter implements PostRepository {
     List<PostEntity> liked = jpaPostRepository.findByLiked(true);
     return liked.stream().map(PostMapper::toDomain)
         .toList();
+  }
+
+  @Override
+  public List<Post> findByCategory(Category category) {
+    List<PostEntity> postEntities = jpaPostRepository.findByCategory(category);
+
+    return postEntities.stream().map(PostMapper::toDomain).toList();
   }
 }

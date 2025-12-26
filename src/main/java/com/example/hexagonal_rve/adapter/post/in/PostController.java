@@ -1,11 +1,13 @@
 package com.example.hexagonal_rve.adapter.post.in;
 
+import com.example.hexagonal_rve.adapter.auth.in.dto.response.ReadPostDetailResponse;
+import com.example.hexagonal_rve.adapter.auth.in.dto.response.ReadPostResponse;
 import com.example.hexagonal_rve.adapter.post.in.dto.CreatePostRequest;
 import com.example.hexagonal_rve.adapter.post.in.dto.UpdatePostRequest;
 import com.example.hexagonal_rve.application.post.port.in.*;
 import com.example.hexagonal_rve.application.post.port.in.command.CreatePostCommand;
 import com.example.hexagonal_rve.application.post.port.in.command.UpdatePostCommand;
-import com.example.hexagonal_rve.domain.post.model.Post;
+import com.example.hexagonal_rve.domain.post.model.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -42,14 +44,20 @@ public class PostController {
 
   @GetMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Post getPosts(@PathVariable Integer id) {
+  public ReadPostDetailResponse getPosts(@PathVariable Integer id) {
     return readPostUseCase.readPostById(id);
   }
 
   @GetMapping()
   @ResponseStatus(HttpStatus.OK)
-  public List<Post> getPostsAll() {
+  public List<ReadPostResponse> getPostsAll() {
     return readPostUseCase.readAllPosts();
+  }
+
+  @GetMapping("/category/{category}")
+  @ResponseStatus(HttpStatus.OK)
+  public List<ReadPostResponse> getPostsByCategory(@PathVariable Category category) {
+    return readPostUseCase.readPostsByCategory(category);
   }
 
   @DeleteMapping("/{id}")
@@ -85,7 +93,7 @@ public class PostController {
 
   @GetMapping("/like")
   @ResponseStatus(HttpStatus.OK)
-  public List<Post> getLikePosts() {
+  public List<ReadPostResponse> getLikePosts() {
     return likePostUseCase.getLikedPosts();
   }
 }

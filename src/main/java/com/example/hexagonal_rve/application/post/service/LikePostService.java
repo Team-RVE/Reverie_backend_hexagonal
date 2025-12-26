@@ -1,5 +1,6 @@
 package com.example.hexagonal_rve.application.post.service;
 
+import com.example.hexagonal_rve.adapter.auth.in.dto.response.ReadPostResponse;
 import com.example.hexagonal_rve.application.post.exception.NotFoundPostException;
 import com.example.hexagonal_rve.application.post.port.in.LikePostUseCase;
 import com.example.hexagonal_rve.application.post.port.out.PostRepository;
@@ -24,7 +25,17 @@ public class LikePostService implements LikePostUseCase {
   }
 
   @Override
-  public List<Post> getLikedPosts() {
-    return postRepository.findByLikedPost();
+  public List<ReadPostResponse> getLikedPosts() {
+    List<Post> posts = postRepository.findByLikedPost();
+
+    return posts.stream()
+        .map(post -> ReadPostResponse.builder()
+            .title(post.getTitle())
+            .content(post.getContent())
+            .category(post.getCategory())
+            .createdAt(post.getCreatedAt())
+            .build()
+        )
+        .toList();
   }
 }
