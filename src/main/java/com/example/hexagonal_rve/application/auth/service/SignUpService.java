@@ -1,6 +1,7 @@
 package com.example.hexagonal_rve.application.auth.service;
 
-import com.example.hexagonal_rve.application.auth.exception.InvalidAuthenticationStatusException;
+import com.example.hexagonal_rve.application.auth.exception.EmailAlreadyExistsException;
+import com.example.hexagonal_rve.application.auth.exception.EmailNotVerifiedException;
 import com.example.hexagonal_rve.application.auth.port.in.SignUpUseCase;
 import com.example.hexagonal_rve.application.auth.port.in.command.SignUpCommand;
 import com.example.hexagonal_rve.application.auth.port.out.PendingUserRepository;
@@ -24,11 +25,14 @@ public class SignUpService implements SignUpUseCase {
   @Override
   public void signUp(SignUpCommand command) {
 
+    if(userRepository.existsByEmail(command.getEmail())) {
+      throw new EmailAlreadyExistsException();
+    }
 
     PendingUser pendingUser= pendingUserRepository.findByEmail(command.getEmail());
 
     if(!pendingUser.isVerified(PendingStatus.EMAIL_VERIFIED)){
-      throw new InvalidAuthenticationStatusException();
+      throw new EmailNotVerifiedException();
     }
 
     String encodedPassword = passwordEncoder.encode(command.getPassword());
