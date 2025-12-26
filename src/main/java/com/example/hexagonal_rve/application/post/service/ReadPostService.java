@@ -22,6 +22,7 @@ public class ReadPostService implements ReadPostUseCase {
         .orElseThrow(NotFoundPostException::new);
 
     return ReadPostDetailResponse.builder()
+        .id(post.getId())
         .title(post.getTitle())
         .content(post.getContent())
         .category(post.getCategory())

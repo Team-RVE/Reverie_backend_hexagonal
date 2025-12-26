@@ -12,6 +12,7 @@ import java.util.List;
 @Builder
 public class ReadPostDetailResponse {
 
+  private Integer id;
   private String title;
   private String content;
   private Category category;
