@@ -1,4 +1,4 @@
-package com.example.hexagonal_rve.adapter.auth.in.dto.response;
+package com.example.hexagonal_rve.adapter.post.in.dto.response;
 
 import com.example.hexagonal_rve.domain.post.model.Category;
 import lombok.Builder;

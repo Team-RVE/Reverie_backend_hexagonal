@@ -1,7 +1,6 @@
 package com.example.hexagonal_rve.application.post.port.in;
 
-import com.example.hexagonal_rve.adapter.auth.in.dto.response.ReadPostResponse;
-import com.example.hexagonal_rve.domain.post.model.Post;
+import com.example.hexagonal_rve.adapter.post.in.dto.response.ReadPostResponse;
 
 import java.util.List;
 

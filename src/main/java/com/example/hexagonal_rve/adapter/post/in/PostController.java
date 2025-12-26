@@ -1,9 +1,9 @@
 package com.example.hexagonal_rve.adapter.post.in;
 
-import com.example.hexagonal_rve.adapter.auth.in.dto.response.ReadPostDetailResponse;
-import com.example.hexagonal_rve.adapter.auth.in.dto.response.ReadPostResponse;
-import com.example.hexagonal_rve.adapter.post.in.dto.CreatePostRequest;
-import com.example.hexagonal_rve.adapter.post.in.dto.UpdatePostRequest;
+import com.example.hexagonal_rve.adapter.post.in.dto.response.ReadPostDetailResponse;
+import com.example.hexagonal_rve.adapter.post.in.dto.response.ReadPostResponse;
+import com.example.hexagonal_rve.adapter.post.in.dto.request.CreatePostRequest;
+import com.example.hexagonal_rve.adapter.post.in.dto.request.UpdatePostRequest;
 import com.example.hexagonal_rve.application.post.port.in.*;
 import com.example.hexagonal_rve.application.post.port.in.command.CreatePostCommand;
 import com.example.hexagonal_rve.application.post.port.in.command.UpdatePostCommand;

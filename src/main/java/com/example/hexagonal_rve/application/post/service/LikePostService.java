@@ -1,6 +1,6 @@
 package com.example.hexagonal_rve.application.post.service;
 
-import com.example.hexagonal_rve.adapter.auth.in.dto.response.ReadPostResponse;
+import com.example.hexagonal_rve.adapter.post.in.dto.response.ReadPostResponse;
 import com.example.hexagonal_rve.application.post.exception.NotFoundPostException;
 import com.example.hexagonal_rve.application.post.port.in.LikePostUseCase;
 import com.example.hexagonal_rve.application.post.port.out.PostRepository;
