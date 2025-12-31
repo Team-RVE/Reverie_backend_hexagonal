@@ -8,6 +8,7 @@ import com.example.hexagonal_rve.application.auth.port.out.PendingUserRepository
 import com.example.hexagonal_rve.application.user.port.out.UserRepository;
 import com.example.hexagonal_rve.domain.auth.vo.PendingStatus;
 import com.example.hexagonal_rve.domain.auth.vo.PendingUser;
+import com.example.hexagonal_rve.domain.user.model.Role;
 import com.example.hexagonal_rve.domain.user.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,7 +38,7 @@ public class SignUpService implements SignUpUseCase {
 
     String encodedPassword = passwordEncoder.encode(command.getPassword());
 
-    User user = User.create(command.getEmail(),encodedPassword);
+    User user = User.create(command.getEmail(),encodedPassword, Role.USER);
 
     userRepository.save(user);
 
