@@ -1,7 +1,7 @@
 package com.example.hexagonal_rve.adapter.post.out.s3;
 
 import com.example.hexagonal_rve.application.post.exception.ImageIOException;
-import com.example.hexagonal_rve.application.post.spi.ImageStoragePort;
+import com.example.hexagonal_rve.application.post.port.out.ImageStoragePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.example.hexagonal_rve.application.auth.spi;
+package com.example.hexagonal_rve.application.auth.port.out;
 
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;

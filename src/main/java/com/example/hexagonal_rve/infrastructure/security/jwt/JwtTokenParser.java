@@ -2,7 +2,7 @@ package com.example.hexagonal_rve.infrastructure.security.jwt;
 
 import com.example.hexagonal_rve.application.auth.exception.JwtExpiredException;
 import com.example.hexagonal_rve.application.auth.exception.JwtInvalidException;
-import com.example.hexagonal_rve.application.auth.spi.JwtParserPort;
+import com.example.hexagonal_rve.application.auth.port.out.JwtParserPort;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;

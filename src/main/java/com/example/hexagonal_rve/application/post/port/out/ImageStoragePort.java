@@ -1,4 +1,4 @@
-package com.example.hexagonal_rve.application.post.spi;
+package com.example.hexagonal_rve.application.post.port.out;
 
 import org.springframework.web.multipart.MultipartFile;
 

@@ -2,7 +2,7 @@ package com.example.hexagonal_rve.adapter.post.out.minio;
 
 
 import com.example.hexagonal_rve.application.post.exception.ImageIOException;
-import com.example.hexagonal_rve.application.post.spi.ImageStoragePort;
+import com.example.hexagonal_rve.application.post.port.out.ImageStoragePort;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import lombok.RequiredArgsConstructor;

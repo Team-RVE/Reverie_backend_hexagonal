@@ -1,6 +1,6 @@
 package com.example.hexagonal_rve.infrastructure.security.jwt;
 
-import com.example.hexagonal_rve.application.auth.spi.JwtGeneratorPort;
+import com.example.hexagonal_rve.application.auth.port.out.JwtGeneratorPort;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;

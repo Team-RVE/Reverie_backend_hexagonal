@@ -1,7 +1,7 @@
 package com.example.hexagonal_rve.infrastructure.security.jwt;
 
-import com.example.hexagonal_rve.application.auth.spi.JwtManagerPort;
-import com.example.hexagonal_rve.application.auth.spi.JwtParserPort;
+import com.example.hexagonal_rve.application.auth.port.out.JwtManagerPort;
+import com.example.hexagonal_rve.application.auth.port.out.JwtParserPort;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

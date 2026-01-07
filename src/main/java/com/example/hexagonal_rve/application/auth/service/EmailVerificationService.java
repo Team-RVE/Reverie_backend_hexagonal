@@ -5,7 +5,7 @@ import com.example.hexagonal_rve.application.auth.exception.NotFoundPendingUserE
 import com.example.hexagonal_rve.application.auth.port.in.EmailVerificationUseCase;
 import com.example.hexagonal_rve.application.auth.port.in.command.VerifyCodeCommand;
 import com.example.hexagonal_rve.application.auth.port.out.PendingUserRepository;
-import com.example.hexagonal_rve.application.auth.spi.MailSenderPort;
+import com.example.hexagonal_rve.application.auth.port.out.MailSenderPort;
 import com.example.hexagonal_rve.domain.auth.vo.PendingUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

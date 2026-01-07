@@ -1,6 +1,6 @@
 package com.example.hexagonal_rve.adapter.auth.in.out;
 
-import com.example.hexagonal_rve.application.auth.spi.MailSenderPort;
+import com.example.hexagonal_rve.application.auth.port.out.MailSenderPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;

@@ -3,7 +3,7 @@ package com.example.hexagonal_rve.application.auth.service;
 import com.example.hexagonal_rve.adapter.auth.in.dto.response.TokenResponse;
 import com.example.hexagonal_rve.application.auth.port.in.ReissueUseCase;
 import com.example.hexagonal_rve.application.auth.port.in.command.ReissueCommand;
-import com.example.hexagonal_rve.application.auth.spi.JwtManagerPort;
+import com.example.hexagonal_rve.application.auth.port.out.JwtManagerPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.example.hexagonal_rve.application.post.service;
 
 import com.example.hexagonal_rve.application.post.port.in.ImageUseCase;
-import com.example.hexagonal_rve.application.post.spi.ImageStoragePort;
+import com.example.hexagonal_rve.application.post.port.out.ImageStoragePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

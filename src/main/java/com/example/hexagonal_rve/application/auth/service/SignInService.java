@@ -4,7 +4,7 @@ import com.example.hexagonal_rve.adapter.auth.in.dto.response.TokenResponse;
 import com.example.hexagonal_rve.application.auth.exception.NotCorrectPassword;
 import com.example.hexagonal_rve.application.auth.port.in.SignInUseCase;
 import com.example.hexagonal_rve.application.auth.port.in.command.SignInCommand;
-import com.example.hexagonal_rve.application.auth.spi.JwtGeneratorPort;
+import com.example.hexagonal_rve.application.auth.port.out.JwtGeneratorPort;
 import com.example.hexagonal_rve.application.user.exception.UserNotFoundException;
 import com.example.hexagonal_rve.application.user.port.out.UserRepository;
 import com.example.hexagonal_rve.domain.user.model.User;
